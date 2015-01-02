@@ -8,4 +8,4 @@ function reverseArray(array){
 var array = [1,2,3];
 
 console.log(reverseArray(array));
-[undefined, 3, 2, 1]
+// my output [undefined, 3, 2, 1]
