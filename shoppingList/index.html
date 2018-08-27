@@ -1,23 +1,60 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Dom Practice</title>
-</head>
-<body>
-	<h1>Shopping List </h1>
-	<!--add item-->
-	<input id ="userinput" type="text" placeholder="enter items">
-	<button id = 'enter'>Enter</button>
-	<!--remove item-->
-	<input id ="removeItem" type="text" placeholder="remove items">
-	<button id = 'remove'>Enter</button>
-	<ul>
+var buttom = document.getElementById('enter');
+var input = document.getElementById('userinput');
+var ul = document.querySelector('ul');
 
-		<li> Jello</li>
-		<li>Spinach</li>
 
-	</ul>
+function inputLength() {
+	return input.value.length;
+}
 
-	<script type="text/javascript" src="script.js"></script>
-</body>
-</html>
+function createListElement() {
+	var li = document.createElement('li');
+	li.appendChild(document.createTextNode(input.value));
+	ul.appendChild(li);
+	input.value = "";
+}
+
+function addListAfterClick() {
+	if (inputLength() > 0){
+		createListElement();
+	}
+}
+
+function addListAfterKeypress(event){
+	//keycode 13 = enter
+	if (inputLength() > 0 && event.keyCode === 13) {
+		createListElement();
+	}
+}
+
+buttom.addEventListener("click",addListAfterClick);
+input.addEventListener("keypress",addListAfterKeypress);
+
+
+//remove item
+
+var removeButtom = document.getElementById('remove');
+var removeItem = document.getElementById("removeItem");
+
+function deleteListElement(toBeDeleted) {
+	
+	for (var i = 0; i < ul.children.length; i++){
+		if (ul.children[i].textContent.trim() == toBeDeleted)
+			ul.children[i].remove();
+	}
+}
+
+function removeListAfterClick() {
+	if (removeItem.value.length > 0){
+		deleteListElement(removeItem.value.trim());
+	}
+}
+
+function removeListAfterKeypress(event){
+	//keycode 13 = enter
+	if (removeItem.value.length > 0 && event.keyCode === 13) {
+		deleteListElement(removeItem.value.trim());
+	}
+}
+removeButtom.addEventListener("click",removeListAfterClick);
+removeItem.addEventListener('keypress', removeListAfterKeypress);
