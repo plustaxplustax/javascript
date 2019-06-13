@@ -1,5 +1,7 @@
+"use strict"
 let conditionalSum = (values, condition) => {
     let result = 0;
+    let remainder;
 
     if (condition == "odd") {
         remainder = 1;
@@ -8,7 +10,7 @@ let conditionalSum = (values, condition) => {
         remainder = 0;
     }
 
-    for (i=0; i < values.length; i++) {
+    for (var i=0; i < values.length; i++) {
         if (values[i] % 2  === remainder) {
             result += values[i];
         }
